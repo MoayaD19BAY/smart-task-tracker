@@ -1,0 +1,23 @@
+# Smart Task Tracker (Django MVP)
+
+A simple, lightweight task management web application built with Python and Django. This project implements standard CRUD (Create, Read, Update, Delete) operations to manage daily tasks locally.
+
+## Features
+- Add new tasks.
+- Toggle task completion status (done/pending).
+- Delete tasks.
+- Clean and responsive user interface with CSS styling.
+
+## Prerequisites
+- Python 3.x installed on your system.
+- Django framework.
+
+## How to Run Locally
+
+1. Clone the repository or download the project files.
+2. Open the project folder in your terminal.
+3. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   # On Windows:
+   .\venv\Scripts\Activate

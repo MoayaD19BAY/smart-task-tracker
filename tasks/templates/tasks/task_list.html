@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مدير المهام الذكي</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f6f9; display: flex; justify-content: center; padding: 50px; }
+        .container { background: #fff; width: 100%; max-width: 500px; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #1e293b; }
+        form { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
+        button { padding: 10px 15px; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        ul { list-style: none; padding: 0; }
+        li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #e2e8f0; }
+        .completed { text-decoration: line-through; color: #94a3b8; }
+        .actions a { text-decoration: none; margin-left: 5px; padding: 4px 8px; border-radius: 4px; font-size: 13px; }
+        .btn-toggle { background: #e0f2fe; color: #0284c7; }
+        .btn-delete { background: #fee2e2; color: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>قائمة المهام</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="أضف مهمة جديدة..." required>
+            <button type="submit">إضافة</button>
+        </form>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <span class="{% if task.completed %}completed{% endif %}">{{ task.title }}</span>
+                    <div>
+                        <a href="{% url 'toggle_task' task.id %}" class="btn-toggle">{% if task.completed %}تراجع{% else %}إنجاز{% endif %}</a>
+                        <a href="{% url 'delete_task' task.id %}" class="btn-delete">حذف</a>
+                    </div>
+                </li>
+            {% empty %}
+                <p style="text-align: center; color: #64748b;">لا توجد مهام حالياً.</p>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

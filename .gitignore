@@ -1,0 +1,9 @@
+# Created by venv
+venv/
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+__pycache__/
+*.pyc
+db.sqlite3
